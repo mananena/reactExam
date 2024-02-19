@@ -4,6 +4,14 @@ import './App.css';
 import { ColumnsType } from 'antd/es/table';
 import { Table } from 'antd';
 
+interface dataSource {
+  key: string;
+  name?: string;
+  age?: number;
+  address?: string;
+  tags?: string[];
+}
+
 const dataSource = [
   {
     key: '1',
