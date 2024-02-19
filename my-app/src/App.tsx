@@ -2,55 +2,55 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { ColumnsType } from 'antd/es/table';
-import { Table } from 'antd';
+import { Button, Table } from 'antd';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-interface dataSource {
-  key: string;
-  name?: string;
-  age?: number;
-  address?: string;
-  tags?: string[];
+interface DataType {
+  country: string;
+  name: string;
 }
 
-const dataSource = [
+const columns: ColumnsType<DataType> = [
   {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
+    title: 'Страна',
+    dataIndex: 'country',
+    key: 'country',
   },
   {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
-  },
-];
-
-const columns = [
-  {
-    title: 'Name',
+    title: 'Название школы',
     dataIndex: 'name',
     key: 'name',
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
-  },
-];
+  }
+]
+
 
 function App() {
 
+  const LIMIT_LIST_SCHOOL: number = 10
+
+  const [dataSource, setDataSource] = useState<DataType[]>();
+
+  const [page, setPage] = useState<number>(1);
+
+  let offset = page * LIMIT_LIST_SCHOOL
+
+  const getUniversity = async (page: number, limit: number, offset: number) => {
+    const response = await axios.get(`http://universities.hipolabs.com/search?offset=${offset}&limit=${limit}`)
+    setDataSource(response.data);
+  }
+
+
+  useEffect(() => {
+    getUniversity(page, LIMIT_LIST_SCHOOL, offset)
+  }, [offset])
 
   return (
     <>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table dataSource={dataSource} columns={columns} pagination={false} />
+      <Button onClick={() => setPage(page - 1)} disabled={!offset}>Назад</Button>
+      <Button onClick={() => setPage(page + 1)}>Вперед</Button>
+      <span>Номер страницы: {page}</span>
     </>
   );
 }
