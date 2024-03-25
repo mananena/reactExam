@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Navbar isAuth={isAuth} />
-      <Button onClick={() => setIsAuth(!isAuth)}>{isAuth ? 'Выйти' : 'Войти'}</Button>
+      <Button onClick={() => setIsAuth(!isAuth)}>{isAuth ? 'Выйти!' : 'Войти!'}</Button>
       <MainRouter isAuth={isAuth} />
     </>
   );
