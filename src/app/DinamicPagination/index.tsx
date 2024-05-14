@@ -7,7 +7,7 @@ import { useInView } from "react-intersection-observer";
 const LIMIT_UNIVERSITIES = 15;
 
 const DynamicPagination: FC = () => {
-  const [universities, setUniversities] = useState<Array<IUniversity>>([]);
+  const [universities, setUniversities] = useState<IUniversity[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -16,11 +16,11 @@ const DynamicPagination: FC = () => {
       setLoading(true);
       const offset = (currentPage - 1) * LIMIT_UNIVERSITIES;
       const response = await axios.get(
-        `http://universities.hipolabs.com/search?offset=${offset}&limit=${LIMIT_UNIVERSITIES}`
+        `http://universities.hipolabs.com/search?offset=${offset}&limit=${LIMIT_UNIVERSITIES}`,
       );
       setUniversities((prev) => [...prev, ...response.data]);
     } catch (error) {
-      console.log('Error fetching universities:', error);
+      console.log("Error fetching universities:", error);
     } finally {
       setLoading(false);
     }

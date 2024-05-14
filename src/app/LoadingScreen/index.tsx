@@ -1,5 +1,5 @@
-import React from 'react';
-import { Rings } from 'react-loader-spinner';
+import React from "react";
+import { Rings } from "react-loader-spinner";
 
 const LoadingScreen: React.FC = () => {
   return (
