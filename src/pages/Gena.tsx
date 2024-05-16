@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import { useForm } from 'react-hook-form';
-import MyDocument from '../app/MyDocument';
+import { useState } from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import { useForm } from "react-hook-form";
+import MyDocument from "../app/MyDocument";
 
 interface IMyForm {
   picture: FileList;
@@ -12,7 +12,7 @@ const Gena = () => {
   const [task, setTasks] = useState<IMyForm | null>(null);
 
   const { register, handleSubmit } = useForm<IMyForm>({
-    mode: 'onBlur',
+    mode: "onBlur",
   });
 
   const MyForm = (data: IMyForm) => {
@@ -23,11 +23,11 @@ const Gena = () => {
     <>
       <form onSubmit={handleSubmit(MyForm)}>
         <input
-          {...register('name', {
-            required: 'Поле обязательно для заполнения',
+          {...register("name", {
+            required: "Поле обязательно для заполнения",
             minLength: {
               value: 5,
-              message: 'Нужно больше символов',
+              message: "Нужно больше символов",
             },
           })}
           placeholder="Enter name"
@@ -35,8 +35,8 @@ const Gena = () => {
         <input
           type="file"
           accept="image/*"
-          {...register('picture', {
-            required: 'Изображение',
+          {...register("picture", {
+            required: "Изображение",
           })}
         />
         <button type="submit">Сохранить</button>
@@ -45,12 +45,12 @@ const Gena = () => {
         <PDFDownloadLink document={<MyDocument name={task.name} picture={task.picture} />} fileName="lab_pdf.pdf">
           {({ loading, error }) => {
             try {
-              if (loading) return 'Loading document...';
-              if (error) throw new Error('Error generating document');
-              return 'Download now!';
+              if (loading) return "Loading document...";
+              if (error) throw new Error("Error generating document");
+              return "Download now!";
             } catch (error) {
-              console.error('PDF generation error:', error);
-              return 'Error generating PDF';
+              console.error("PDF generation error:", error);
+              return "Error generating PDF";
             }
           }}
         </PDFDownloadLink>

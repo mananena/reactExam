@@ -1,5 +1,5 @@
-import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Image } from '@react-pdf/renderer';
+import React from "react";
+import { Page, Text, View, Document, StyleSheet, Image } from "@react-pdf/renderer";
 
 interface IDocumentProps {
   name: string;
@@ -23,8 +23,8 @@ const MyDocument: React.FC<IDocumentProps> = ({ name, picture }) => {
 
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
   },
   section: {
     margin: 10,

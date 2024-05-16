@@ -1,10 +1,7 @@
-import React from "react";
+import DinamicPagination from "../app/DinamicPagination";
 
 export const Oleg = () => {
-
-    return (
-        <>Я Oleg</>
-    )
-}
+  return <DinamicPagination></DinamicPagination>;
+};
 
 export default Oleg;
