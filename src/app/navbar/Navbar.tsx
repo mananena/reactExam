@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { TABLE_ROUTE, GENA_ROUTE, OLEG_ROUTE, VLAD_ROUTE } from "../routes/configs";
 
-const Navbar = ({ isAuth = false }) => {
+const Navbar = () => {
   return (
     <>
       <Link to={VLAD_ROUTE}>VLAD_ROUTE</Link>

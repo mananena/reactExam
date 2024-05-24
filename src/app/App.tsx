@@ -7,7 +7,7 @@ const App = () => {
   const [isAuth, setIsAuth] = useState(false);
   return (
     <>
-      <Navbar isAuth={isAuth} />
+      <Navbar />
       <Button
         onClick={() => {
           setIsAuth(!isAuth);
@@ -15,7 +15,7 @@ const App = () => {
       >
         {isAuth ? "Выйти!" : "Войти!"}
       </Button>
-      <MainRouter isAuth={isAuth} />
+      <MainRouter />
     </>
   );
 };
